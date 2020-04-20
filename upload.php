@@ -37,7 +37,7 @@ if (
             $extension = mime2ext($imageMime);
             $uuid = UUID::v4();
             $path = "assets/images/$uuid.$extension";
-            $uploaded = move_uploaded_file($_FILES['image']['tmp_name'], $_SERVER['DOCUMENT_ROOT']."/".$path);
+            $uploaded = move_uploaded_file($_FILES['image']['tmp_name'], __DIR__."/".$path);
 
             if($uploaded) {
                 // Ajout dans la BDD
