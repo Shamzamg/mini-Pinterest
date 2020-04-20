@@ -23,7 +23,7 @@ if(isset($THEME_USER_ID)) {
             array_push($themes, array(
                 "name" => $t["themeName"],
                 "pictures" => array_column($pictures, "file"),
-                "link" => "/profile.php?user=".$t["userId"]."&theme=".$t["themeId"]
+                "link" => "profile.php?user=".$t["userId"]."&theme=".$t["themeId"]
             ));
         }
     }
@@ -35,7 +35,7 @@ if(isset($THEME_USER_ID)) {
             array_push($themes, array(
                 "name" => $themeName,
                 "pictures" => array_column($pictures, "file"),
-                "link" => "/?theme=$themeName"
+                "link" => "index.php?theme=$themeName"
             ));
         }
     }
