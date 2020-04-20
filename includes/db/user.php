@@ -57,5 +57,13 @@ function getUserById($pdo, $id)
     $res->closeCursor();
     return $user;
 }
+&&&&&&&&&&&&&&
+function getUserCount($pdo)
+{
+	$res = executeQuery($pdo, "SELECT count(*) FROM User");
+	$nb = $res->fetch();
+	$res->closeCursor();
+	return $nb["count(*)"];
+}
 
 ?>
