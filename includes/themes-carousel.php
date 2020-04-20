@@ -15,7 +15,7 @@ foreach($popularThemes as $themeName) {
     array_push($themes, array(
         "name" => $themeName,
         "pictures" => array_column($pictures, "file"),
-        "link" => "/?theme=$themeName"
+        "link" => "index.php?theme=$themeName"
     ));
 }
 
