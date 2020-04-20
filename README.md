@@ -4,7 +4,7 @@ Projet réalisé par GUILLET Theodore, ZIANI Shamsdine
 
 Site permettant la publication et la suppression de photos par des utilisateurs
 
-## Requirements
+## Librairies
 
 - [Bootstrap](https://getbootstrap.com/)
 - [jQuery](https://jquery.com/)
