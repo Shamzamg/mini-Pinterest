@@ -6,7 +6,7 @@ include("includes/db/theme.php");
 include("includes/db/picture.php");
 
 if (!$USER_LOGGED) {
-    header('Location: /');
+    header('Location: index.php');
     exit();
 }
 
@@ -40,7 +40,7 @@ closeConnexion($pdo);
 
 if(!$user) {
     closeConnexion($pdo);
-    header('Location: /');
+    header('Location: index.php');
     exit();
 }
 
@@ -56,7 +56,7 @@ if(isset($_POST["remove"]) && isset($theme) && $userCanModify($PROFILE_USER_ID))
     
     closeConnexion($pdo);
 
-    header('Location: /profile.php?user='.$PROFILE_USER_ID);
+    header('Location: profile.php?user='.$PROFILE_USER_ID);
     exit();
 }
 

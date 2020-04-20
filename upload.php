@@ -7,7 +7,7 @@ include("includes/utils/file-upload.php");
 include("includes/utils/uuid.php");
 
 if (!$USER_LOGGED) {
-    header('Location: /');
+    header('Location: index.php');
     exit();
 }
 
@@ -55,7 +55,7 @@ if (
                     addPicture($pdo, $title, $path, $desc, $theme["id"]);
                     closeConnexion($pdo);
 
-                    header('Location: /profile.php?theme='.$theme["id"]);
+                    header('Location: profile.php?theme='.$theme["id"]);
                     exit();
                 } else {
                     $error = "Bad theme";

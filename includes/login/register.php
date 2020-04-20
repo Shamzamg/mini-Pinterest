@@ -3,7 +3,7 @@
     include_once("includes/db/user.php");
 
     if($_POST["login"] != "register") {
-        header('Location: /');
+        header('Location: index.php');
         exit();
     }
     if(!empty($_POST["email"]) && !empty($_POST["password"])) {
@@ -25,7 +25,7 @@
                 
                 $_SESSION["user"] = $pseudo;
     
-                header('Location: /');
+                header('Location: index.php');
                 exit();
             } else {
                 $emailErr = "Email already used, please sign in";

@@ -3,7 +3,7 @@
     include_once("includes/db/user.php");
 
     if($_POST["login"] != "signin") {
-        header('Location: /');
+        header('Location: index.php');
         exit();
     }
     if(!empty($_POST["email"]) && !empty($_POST["password"])) {
@@ -14,7 +14,7 @@
 
             if($user) {
                 $_SESSION["user"] = $user;
-                header('Location: /');
+                header('Location: index.php');
                 exit();
             } else {
                 $error = "Invalid email or password";

@@ -5,7 +5,7 @@ include("includes/db/theme.php");
 include("includes/db/picture.php");
 
 if (!$USER_LOGGED || !$USER_IS_MODERATOR) {
-    header('Location: /');
+    header('Location: index.php');
     exit();
 }
 

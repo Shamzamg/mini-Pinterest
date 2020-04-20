@@ -4,7 +4,7 @@ include("includes/db/index.php");
 include("includes/db/theme.php");
 
 if (!$USER_LOGGED) {
-    header('Location: /');
+    header('Location: index.php');
     exit();
 }
 
@@ -19,7 +19,7 @@ if(isset($_POST["name"])) {
     closeConnexion($pdo);
 
     if($theme) {
-        header('Location: /profile.php?theme='.$theme["id"]);
+        header('Location: profile.php?theme='.$theme["id"]);
         exit();
     } else {
         $error = "Unknow error";

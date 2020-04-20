@@ -14,7 +14,7 @@ if(isset($_POST["remove"])) {
 }
 
 if (!$USER_LOGGED || !isset($PICTURE_ID)) {
-    header('Location: /');
+    header('Location: index.php');
     exit();
 }
 
@@ -25,7 +25,7 @@ $user = $theme ? getUserById($pdo, $theme["userId"]) : false;
 closeConnexion($pdo);
 
 if(!$picture || !$theme || !$user) {
-    header('Location: /');
+    header('Location: index.php');
     exit();    
 }
 
@@ -37,7 +37,7 @@ if(isset($_POST["remove"]) && $userCanModify($user["id"])) {
     
     closeConnexion($pdo);
 
-    header('Location: /');
+    header('Location: index.php');
     exit();
 }
 
