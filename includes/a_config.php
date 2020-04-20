@@ -19,16 +19,17 @@
 	$USER_IS_ADMIN = ($USER_RIGHTS == "ADMIN");
 	$USER_IS_MODERATOR = ($USER_RIGHTS == "MODERATOR") || $USER_IS_ADMIN;
 
-	switch ($_SERVER["SCRIPT_NAME"]) {
-		case "/about.php":
+	$path = explode("/", $_SERVER["SCRIPT_NAME"]);
+	switch ($path[count($path) - 1]) {
+		case "about.php":
 			$CURRENT_PAGE = "About"; 
 			$PAGE_TITLE = "About Us";
 			break;
-		case "/themes.php":
+		case "themes.php":
 			$CURRENT_PAGE = "Themes"; 
 			$PAGE_TITLE = "Themes";
 			break;
-		case "/stats.php":
+		case "stats.php":
 			$CURRENT_PAGE = "Stats";
 			$PAGE_TITLE = "Stats";
 			break;
