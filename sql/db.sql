@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `email` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
-  `rights` varchar(255) NOT NULL DEFAULT 'USER';
+  `rights` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------

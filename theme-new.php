@@ -33,7 +33,7 @@ if(isset($_POST["name"])) {
 
 <head>
     <?php include("includes/head-tag-contents.php"); ?>
-    <link rel="stylesheet" href="/styles/form.css">
+    <link rel="stylesheet" href="styles/form.css">
 </head>
 
 <body class="bg-light">

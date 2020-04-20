@@ -1,7 +1,7 @@
 <div class="container-fullwidth navidation">
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="/">
-			<img src="/assets/img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
+		<a class="navbar-brand" href="index.php">
+			<img src="assets/img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="logo">
 			Pic
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar5">
@@ -10,13 +10,13 @@
 		<div class="navbar-collapse collapse" id="navbar5">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link <?php if ($CURRENT_PAGE == "Index") {?>active<?php }?>" href="/index.php">Home</a>
+					<a class="nav-link <?php if ($CURRENT_PAGE == "Index") {?>active<?php }?>" href="index.php">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link <?php if ($CURRENT_PAGE == "Themes") {?>active<?php }?>" href="/themes.php">Themes</a>
+					<a class="nav-link <?php if ($CURRENT_PAGE == "Themes") {?>active<?php }?>" href="themes.php">Themes</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link <?php if ($CURRENT_PAGE == "About") {?>active<?php }?>" href="/about.php">About</a>
+					<a class="nav-link <?php if ($CURRENT_PAGE == "About") {?>active<?php }?>" href="about.php">About</a>
 				</li>
 			</ul>
 			<form class="mx-2 my-auto d-inline w-100">
@@ -34,18 +34,18 @@
 				if($USER_IS_MODERATOR) {
 					echo '
 					<li class="nav-item">
-						<a class="nav-link '.($CURRENT_PAGE == 'Stats' ? 'active' : '').'" href="/stats.php">Stats</a>
+						<a class="nav-link '.($CURRENT_PAGE == 'Stats' ? 'active' : '').'" href="stats.php">Stats</a>
 					</li>
 					';
 				}
 				?>
 				<li class="nav-item">
-					<a class="nav-link" href="/upload.php">
+					<a class="nav-link" href="upload.php">
 						<i class="fa fa-plus-square fa-lg"></i>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/profile.php">
+					<a class="nav-link" href="profile.php">
 						<i class="fa fa-user-circle fa-lg"></i>
 					</a>
 				</li>
@@ -54,7 +54,7 @@
 						<i class="fa fa-angle-down"></i>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						<form action="/logout.php" method="post">
+						<form action="logout.php" method="post">
 							<input class="dropdown-item" type="submit" value="Disconnect">
 						</form>
 					</div>

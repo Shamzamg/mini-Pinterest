@@ -20,7 +20,7 @@ foreach($popularThemes as $themeName) {
 }
 
 ?>
-<link rel="stylesheet" href="/styles/themes-carousel.css">
+<link rel="stylesheet" href="styles/themes-carousel.css">
 <div class="categories-slider">
     <div class="container-fluid">
         <div id="carousel-example" class="carousel slide" data-ride="carousel">
@@ -45,7 +45,7 @@ foreach($popularThemes as $themeName) {
             while($i < 6) {
                 echo '
                 <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 '.($i == 0 ? "active" : "").'">
-                    <a href="/theme-new.php">
+                    <a href="theme-new.php">
                         <div class="carousel-add-theme"></div>
                         <div class="carousel-image-title">
                             <h5>New Theme</h5>

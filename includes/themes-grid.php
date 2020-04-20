@@ -45,7 +45,7 @@ closeConnexion($pdo);
 
 ?>
 
-<link rel="stylesheet" href="/styles/themes-grid.css">
+<link rel="stylesheet" href="styles/themes-grid.css">
 <div class="container-fluid">
     <div class="flex-container wrap align-center">
     <?php
@@ -68,7 +68,7 @@ closeConnexion($pdo);
         if(isset($THEME_USER_ID) && $THEME_USER_ID == $USER_ID) {
             echo '
             <div class="themeItem">
-                <a href="/theme-new.php" class="d-block mb-4 h-100">
+                <a href="theme-new.php" class="d-block mb-4 h-100">
                     <div class="newThemeButton"></div>
                 </a>
             </div>

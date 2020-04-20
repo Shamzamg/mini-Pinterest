@@ -17,14 +17,14 @@ closeConnexion($pdo);
 
 ?>
 
-<link rel="stylesheet" href="/styles/picture-grid.css">
+<link rel="stylesheet" href="styles/picture-grid.css">
 <div class="container-fluid">
     <div class="flex-container wrap align-center">
     <?php
         foreach($pictures as $picture) {
             echo '
             <div class="pictureItem">
-                <a href="/picture.php?id='.$picture["id"].'" class="d-block mb-4 h-100">
+                <a href="picture.php?id='.$picture["id"].'" class="d-block mb-4 h-100">
                     <div class="pictureContainer">
                         <img class="picture" src="'.$picture["file"].'" alt="'.$picture["title"].'">
                     </div>
@@ -35,7 +35,7 @@ closeConnexion($pdo);
         if(empty($pictures) && isset($PICTURES_USER_ID) && $PICTURES_USER_ID == $USER_ID) {
             echo '
             <div class="pictureItem">
-                <a href="/upload.php" class="d-block mb-4 h-100">
+                <a href="upload.php" class="d-block mb-4 h-100">
                     <div class="uploadButton"></div>
                 </a>
             </div>

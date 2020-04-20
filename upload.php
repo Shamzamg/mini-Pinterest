@@ -84,8 +84,8 @@ closeConnexion($pdo);
 
 <head>
     <?php include("includes/head-tag-contents.php"); ?>
-    <link rel="stylesheet" href="/styles/form.css">
-    <link rel="stylesheet" href="/styles/upload.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/upload.css">
 </head>
 
 <body class="bg-light">
@@ -133,7 +133,7 @@ closeConnexion($pdo);
                                     </select>
                                 </div>
                                 <div class="col-1 my-auto mx-auto">
-                                    <a class="btn btn-secondary btn-sm" href="/theme-new.php" title="New Theme">
+                                    <a class="btn btn-secondary btn-sm" href="theme-new.php" title="New Theme">
                                         <i class="fa fa-plus fa-lg"></i>
                                     </a>
                                 </div>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/styles/form.css">
+<link rel="stylesheet" href="styles/form.css">
 <div class="hider">
     <?php 
         if(isset($_POST["login"]) && $_POST["login"] == "signin") {

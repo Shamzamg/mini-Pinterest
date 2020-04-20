@@ -31,7 +31,7 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign In</h5>
-                    <form class="form-signin" action="/" method="post">
+                    <form class="form-signin" method="post">
                         <input type="hidden" name="login" value="signin"/>
                         <div class="form-label-group">
                             <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
