@@ -24,10 +24,10 @@ $pdo = getConnection();
 <body class="bg-light">
     <?php include("includes/navigation.php"); ?>
 
-    <div class="card container bg-white" id="main-content">
+    <div class="card container bg-white shadow p-3 mb-5" id="main-content">
         <h2>Statistiques du site</h2>
-        <?php echo '<h4> Il y a: <red>'.getUserCount($pdo).'</red> inscrits sur Pic !</red></h4>'; 
-              echo '<h4>Au total, <gray>'.getPicturesCount($pdo).'</gray> photos ont été postées sur Pic !</h4>';?>
+        <?php echo '<h5> Il y a: <red>'.getUserCount($pdo).'</red> inscrits sur Pic !</red></h5>'; 
+              echo '<h5>Au total, <gray>'.getPicturesCount($pdo).'</gray> photos ont été postées sur Pic !</h5>';?>
         
     </div>
 
