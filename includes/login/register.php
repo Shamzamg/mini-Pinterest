@@ -21,9 +21,10 @@
                 }
     
                 register($email, md5($password), $pseudo, $pdo);
+                $user = getUser($email, md5($password), $pdo);
                 closeConnexion($pdo);
                 
-                $_SESSION["user"] = $pseudo;
+                $_SESSION["user"] = $user;
     
                 header('Location: index.php');
                 exit();
