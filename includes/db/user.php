@@ -58,9 +58,25 @@ function getUserById($pdo, $id)
     return $user;
 }
 
+/**
+ * Renvoie le nombre d'utilisateurs inscrits dans la base de données
+ * @param PDO $pdo
+ */
 function getUserCount($pdo)
 {
 	$res = executeQuery($pdo, "SELECT count(*) FROM User");
+	$nb = $res->fetch();
+	$res->closeCursor();
+	return $nb["count(*)"];
+}
+
+/**
+ * Renvoie le nombre de photos postées
+ * @param PDO $pdo
+ */
+function getPicturesCount($pdo)
+{
+	$res = executeQuery($pdo, "SELECT count(*) FROM Picture");
 	$nb = $res->fetch();
 	$res->closeCursor();
 	return $nb["count(*)"];
