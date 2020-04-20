@@ -36,7 +36,10 @@ if (
             // Stockage du fichier
             $extension = mime2ext($imageMime);
             $uuid = UUID::v4();
-            $path = "assets/images/$uuid.$extension";
+            $path = "storage/$uuid.$extension";
+            if(!file_exists(__DIR__."/storage")) {
+                mkdir(__DIR__."/storage");
+            }
             $uploaded = move_uploaded_file($_FILES['image']['tmp_name'], __DIR__."/".$path);
 
             if($uploaded) {
