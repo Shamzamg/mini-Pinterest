@@ -83,7 +83,7 @@ $PICTURES_THEME_ID = $PROFILE_THEME_ID;
         <?php 
         if(isset($PROFILE_USER_ID)){
             $pdo = getConnection();
-            echo '(Total posts: <gray>'.totalUserPicturesFromId($pdo, $PROFILE_USER_ID).'</gray> )';
+            echo '(Total posts: <gray>'.totalUserPicturesFromId($pdo, $PROFILE_USER_ID).'</gray>)';
             closeConnexion($pdo);
         }
 

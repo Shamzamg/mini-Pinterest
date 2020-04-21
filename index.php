@@ -21,6 +21,9 @@ if(isset($_GET["theme"])) {
             if(!isset($PICTURES_THEME_NAME)) {
                 include("includes/themes-carousel.php");
             }
+            else{
+                echo '<div class="card container text-center"><h1>'.$PICTURES_THEME_NAME.'</div>';
+            }
         }
     ?>
 
