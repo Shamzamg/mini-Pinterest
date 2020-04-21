@@ -21,11 +21,11 @@ closeConnexion($pdo);
 
 <link rel="stylesheet" href="styles/picture-grid.css">
 <div class="container-fluid">
-    <div class="flex-container wrap align-center">
+    <div class="grid flex-container wrap" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 250 }'>
     <?php
         foreach($pictures as $picture) {
             echo '
-            <div class="pictureItem">
+            <div class="grid-item pictureItem">
                 <a href="picture.php?id='.$picture["id"].'" class="d-block mb-4 h-100">
                     <div class="pictureContainer">
                         <img class="picture" src="'.$picture["file"].'" alt="'.$picture["title"].'">
@@ -36,7 +36,7 @@ closeConnexion($pdo);
         }
         if(empty($pictures) && isset($PICTURES_USER_ID) && $PICTURES_USER_ID == $USER_ID) {
             echo '
-            <div class="pictureItem">
+            <div class="grid-item pictureItem">
                 <a href="upload.php" class="d-block mb-4 h-100">
                     <div class="uploadButton"></div>
                 </a>
@@ -49,3 +49,5 @@ closeConnexion($pdo);
     ?>
     </div>
 </div>
+
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>

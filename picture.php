@@ -67,7 +67,7 @@ if(isset($_POST["remove"]) && $userCanModify($user["id"])) {
 						<i class="fa fa-ellipsis-h fa-lg"></i>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="profile.php?user=<?= $user["id"] ?>&theme=<?= $theme["id"] ?>">Profile</a>
+                        <a class="dropdown-item" href="profile.php?user=<?= $user["id"] ?>&theme=<?= $theme["id"] ?>">Author</a>
                         <?php
                         if($userCanModify($user["id"])) {
                             // <input class="dropdown-item" id="removeSubmit" name="remove" type="submit" value="Remove">

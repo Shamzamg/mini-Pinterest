@@ -1,7 +1,22 @@
-/*
-    code by Iatek LLC 2018 - CC 2.0 License - Attribution required
-    code customized by Azmind.com
-*/
+.carousel {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.carousel-item {
+    width: 100%;
+    margin: 0px;
+}
+@media (max-width: 576px) {
+    /* show only 1 items */
+    .carousel-inner .carousel-item {
+        display: none;
+    }
+    .carousel-inner .active {
+        display: block;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
     /* Show 4th slide on md if col-md-4*/
     .carousel-inner .active.col-md-4.carousel-item + .carousel-item + .carousel-item + .carousel-item {
@@ -23,8 +38,19 @@
         display: block;
         visibility: visible;
     }
+    /*
+    .carousel-inner .carousel-item-right {
+        transition: none;
+    }
+    .carousel-inner .carousel-item-left {
+        transition: none;
+    }
+    */
 }
 @media (min-width: 576px) {
+    .carousel-item {
+        width: 50%;
+    }
     .carousel-item {
         margin-right: 0;
     }
@@ -70,6 +96,9 @@
 }
 /* MD */
 @media (min-width: 768px) {
+    .carousel-item {
+        width: 33.33%;
+    }
     /* show 3rd of 3 item slide */
     .carousel-inner .active + .carousel-item + .carousel-item {
         display: block;
@@ -98,6 +127,9 @@
 }
 /* LG */
 @media (min-width: 991px) {
+    .carousel-item {
+        width: 25%;
+    }
     /* show 4th item */
     .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item {
         display: block;
@@ -130,6 +162,19 @@
     }
 }
 
+.carousel-control-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: gray;
+}
+
+.carousel-item-inner {
+    width: 200px;
+    margin: auto;
+}
+
 .carousel-image {
     width: 200px;
     height: 150px;
@@ -154,9 +199,10 @@
 .categories-slider {
     position: relative;
     width: 100%;
-    padding-right: 25%;
-    padding-left: 25%;
-    margin: 1rem;
+    margin: 0px;
+    padding: 1rem;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .carousel-add-theme {
@@ -173,3 +219,4 @@
 .carousel-add-theme:hover {
     background-color: #e1e1e1;
 }
+

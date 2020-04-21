@@ -16,11 +16,12 @@
 --
 
 CREATE TABLE IF NOT EXISTS `User` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
-  `rights` varchar(255) NOT NULL,
+  `rights` varchar(255) NOT NULL DEFAULT 'USER',
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- --------------------------------------------------------

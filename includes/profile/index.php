@@ -22,7 +22,19 @@
     <div class="col">
         <div class="pull-right">
             <div class="row">
-                <img class="user-image" src="assets/img/user.svg"></img>
+                <img class="user-image" src="<?= $user['image'] ? $user['image'] : 'assets/img/user.svg' ?>"></img>
+                <?php 
+                if($userCanModify($PROFILE_USER_ID)) {
+                    echo '
+                    <form method="post" id="set-image-form" name="set-image" enctype="multipart/form-data">
+                        <input type="hidden" name="user" value="'.$user["id"].'">
+                        <input type="hidden" name="set-image" value="">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_IMAGE_SIZE ?>" />
+                        <input type="file" id="upload-user-image" class="hidden" name="image" multiple accept="image/*">
+                    </form>
+                    ';
+                }
+                ?>
             </div>
             <?php
             if($userCanModify($PROFILE_USER_ID)) {
@@ -93,3 +105,15 @@
         </form>
     </div>
 </div>
+
+<script>
+    if(<?= $USER_ID == $PROFILE_USER_ID ?>) {
+        $(".user-image").click(function() {
+            console.log("CLICK");
+            $("#upload-user-image").trigger("click");
+        });
+        $("#upload-user-image").change(function() {
+            $("#set-image-form").submit();
+        });
+    }
+</script>

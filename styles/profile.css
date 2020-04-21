@@ -12,6 +12,9 @@
     border-radius: 50px;
     float: right;
 }
+.user-image:hover {
+    cursor: pointer;
+}
 
 .user-mini {
     display: flex;

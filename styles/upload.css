@@ -2,10 +2,6 @@
     padding: 2rem;
 }
 
-.hidden {
-    display: none;
-}
-
 .file-button {
     opacity: 0;
 }

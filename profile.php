@@ -4,6 +4,8 @@ include("includes/db/index.php");
 include("includes/db/user.php");
 include("includes/db/theme.php");
 include("includes/db/picture.php");
+include("includes/utils/file-upload.php");
+include("includes/utils/uuid.php");
 
 if (!$USER_LOGGED) {
     header('Location: index.php');
@@ -76,10 +78,39 @@ if(isset($_POST["set-pseudo"]) && $userCanModify($PROFILE_USER_ID)) {
     exit();
 }
 
+if(isset($_POST["set-image"]) && $userCanModify($PROFILE_USER_ID) && 
+    isset($_FILES['image']) && $_FILES['image']['error'] == 0 && $_FILES['image']['size'] < MAX_IMAGE_SIZE
+) {
+    $imageMime = checkImageType($_FILES['image']);
+    if($imageMime) {
+        $extension = mime2ext($imageMime);
+        if($extension) {
+            // Stockage du fichier
+            $uuid = UUID::v4();
+            $path = 'storage/'.$uuid.'.'.$extension;
+            if(!file_exists(__DIR__."/storage")) {
+                mkdir(__DIR__."/storage");
+            }
+            $uploaded = move_uploaded_file($_FILES['image']['tmp_name'], __DIR__."/".$path);
+
+            if($uploaded) {
+                changeUserImage($pdo, $PROFILE_USER_ID, $path);
+            }
+        }
+    }
+
+    closeConnexion($pdo);
+    header('Location: '.$_SERVER['REQUEST_URI']);
+    exit();
+}
+
 if(isset($_POST["remove-user"]) && $userCanModify($PROFILE_USER_ID)) {
     $files = getPictureFilesByUserId($pdo, $PROFILE_USER_ID);
     foreach($files as $f) {
         unlink(__DIR__."/".$f);
+    }
+    if($user["image"]) {
+        unlink(__DIR__."/".$user["image"]);
     }
     removePictureByUserId($pdo, $PROFILE_USER_ID);
     removeThemeByUserId($pdo, $PROFILE_USER_ID);
