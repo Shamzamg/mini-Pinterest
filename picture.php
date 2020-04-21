@@ -92,7 +92,7 @@ if(isset($_POST["remove"]) && $userCanModify($user["id"])) {
     <div class="modal fade" id="confirm-remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="font-weight-bold modal-header">
                     Confirm Remove
                 </div>
                 <div class="modal-body">

@@ -82,4 +82,11 @@ function getPicturesCount($pdo)
 	return $nb["count(*)"];
 }
 
+function totalUserPicturesFromId($pdo, $userId){
+	$res = executeQuery($pdo, "SELECT count(*) FROM User U JOIN Theme T ON U.id=T.userId JOIN Picture P ON T.id=P.themeId WHERE U.id='$userId'");
+	$nb = $res->fetch();
+	$res->closeCursor();
+	return $nb["count(*)"];
+}
+
 ?>

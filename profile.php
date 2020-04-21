@@ -70,27 +70,38 @@ $PICTURES_THEME_ID = $PROFILE_THEME_ID;
 
 <head>
     <?php include("includes/head-tag-contents.php"); ?>
+    <link rel="stylesheet" href="styles/profile.css">
 </head>
 
 <body>
     <?php include("includes/navigation.php"); ?>
 
-    <div class="mainContainer">
+    <div class="card container">
+        <div class="text-center">
         <h1><?= $user["pseudo"] ?></h1>
 
         <?php 
+        if(isset($PROFILE_USER_ID)){
+            $pdo = getConnection();
+            echo '(Total posts: <gray>'.totalUserPicturesFromId($pdo, $PROFILE_USER_ID).'</gray> )';
+            closeConnexion($pdo);
+        }
+
         if(isset($PROFILE_THEME_ID)) {
             echo '<h2>'.$theme["name"].'</h2>';
             if($userCanModify($PROFILE_USER_ID)) {
                 echo '
                 <form method="post" id="removeForm">
                     <input type="hidden" name="remove" value="'.$PROFILE_THEME_ID.'">
-                    <input type="button" name="btn" value="Remove" id="removeBtn" data-toggle="modal" data-target="#confirm-remove" class="btn btn-danger" />
+                    <input type="button" name="btn" value="Remove Theme" id="removeBtn" data-toggle="modal" data-target="#confirm-remove" class="btn btn-danger" />
                 </form>
                 ';
             }
-            include("includes/picture-grid.php");
-        } else {
+        }
+        ?>
+        </div> <!-- Ferme le div qui aligne le texte-->
+        <?php include("includes/picture-grid.php");
+         if(!$userCanModify($PROFILE_USER_ID)) {
             include("includes/themes-grid.php");
         }
         ?>
@@ -99,7 +110,7 @@ $PICTURES_THEME_ID = $PROFILE_THEME_ID;
     <div class="modal fade" id="confirm-remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class=" font-weight-bold modal-header">
                     Confirm Remove
                 </div>
                 <div class="modal-body">
@@ -108,7 +119,7 @@ $PICTURES_THEME_ID = $PROFILE_THEME_ID;
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="#" id="removeConfirm" class="btn btn-danger success">Remove</a>
+                    <a href="#" id="removeConfirm" class="btn btn-danger success">Remove Theme</a>
                 </div>
             </div>
         </div>

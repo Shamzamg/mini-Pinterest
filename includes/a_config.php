@@ -1,5 +1,5 @@
 <?php
-	define("MAX_IMAGE_SIZE", 1000000); // 1Mo
+	define("MAX_IMAGE_SIZE", 6000000); // 6Mo
 	
 	if(session_status() !== PHP_SESSION_ACTIVE) {
 		session_start();
