@@ -16,8 +16,17 @@ function checkThemeAvailability($pdo, $theme, $userId)
 function addTheme($pdo, $name, $userId)
 {
     executeUpdate($pdo, 
-        "INSERT INTO Theme (`name`,`userId`) VALUES (?,?);", array(
+        "INSERT INTO Theme (`name`,`userId`) VALUES (?,?)", array(
             $name, $userId
+        )
+    );
+}
+
+function changeThemeName($pdo, $id, $name)
+{
+    executeUpdate($pdo, 
+        "UPDATE Theme SET name = ? WHERE id = ?", array(
+            $name, $id
         )
     );
 }
@@ -27,6 +36,15 @@ function removeTheme($pdo, $id)
     executeUpdate($pdo, 
         "DELETE FROM Theme WHERE id = ?", array(
             $id
+        )
+    );
+}
+
+function removeThemeByUserId($pdo, $userId)
+{
+    executeUpdate($pdo, 
+        "DELETE FROM Theme WHERE userId = ?", array(
+            $userId
         )
     );
 }

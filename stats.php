@@ -12,6 +12,12 @@ if (!$USER_LOGGED || !$USER_IS_MODERATOR) {
 
 $pdo = getConnection();
 
+$userCount = getUserCount($pdo);
+$picCount = getPicturesCount($pdo);
+$picAverage = $userCount == 0 ? 0 : $picCount / $userCount;
+
+closeConnexion($pdo);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,15 +31,10 @@ $pdo = getConnection();
     <?php include("includes/navigation.php"); ?>
 
     <div class="card container bg-white shadow p-3 mb-5" id="main-content">
-        <h2>Statistiques du site</h2>
-        <?php echo '<h5> Il y a: <red>'.getUserCount($pdo).'</red> inscrits sur Pic !</red></h5>'; 
-              echo '<h5>Au total, <lightblue>'.getPicturesCount($pdo).'</lightblue> photos ont été postées sur Pic !</h5>';
-              if(getPicturesCount($pdo) != 0){
-                //number_format permet de garder n nombres après la virgules pour éviter les 1.666666666666667
-                echo '<h5>Sur Pic, chaque utilisateur poste en moyenne <gray>'.number_format(getPicturesCount($pdo)/getUserCount($pdo), 2, ".", ",").'</gray> photo(s) !</h5>';
-              }
-              closeConnexion($pdo);?>
-        
+        <h2 class="mb-4">Statistiques du site</h2>
+        <h5> Il y a: <span style="color:red"><?= $userCount ?></span> inscrits sur Pic !</h5>
+        <h5>Au total, <span style="color:#4e96b8"><?= $picCount ?></span> photos ont été postées sur Pic !</h5>
+        <h5>Sur Pic, chaque utilisateur poste en moyenne <span style="color:gray"><?= number_format($picAverage, 2, ".", ",") ?></span> photo(s) !</h5>
     </div>
 
     <?php include("includes/footer.php"); ?>

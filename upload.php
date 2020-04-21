@@ -32,11 +32,14 @@ if (
     
     } else {
         $imageMime = checkImageType($_FILES['image']);
+        $extension = false;
         if($imageMime) {
-            // Stockage du fichier
             $extension = mime2ext($imageMime);
+        }
+        if($imageMime && $extension) {
+            // Stockage du fichier
             $uuid = UUID::v4();
-            $path = "storage/$uuid.$extension";
+            $path = 'storage/'.$uuid.'.'.$extension;
             if(!file_exists(__DIR__."/storage")) {
                 mkdir(__DIR__."/storage");
             }
@@ -69,7 +72,7 @@ if (
                 $error = "File storage error";
             }
         } else {
-            $error = "Bad file type";
+            $error = "Bad file type: ".$imageMime;
         }
     }
 }

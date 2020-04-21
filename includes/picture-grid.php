@@ -7,6 +7,8 @@ $pdo = getConnection();
 
 if(isset($PICTURES_THEME_ID)) {
     $pictures = getPicturesByThemeId($pdo, $PICTURES_THEME_ID, $limit);
+} else if(isset($PICTURES_USER_ID)) {
+    $pictures = getPicturesByUserId($pdo, $PICTURES_USER_ID, $limit);
 } else if(isset($PICTURES_THEME_NAME)) {
     $pictures = getPicturesByThemeName($pdo, $PICTURES_THEME_NAME, $limit);
 } else {

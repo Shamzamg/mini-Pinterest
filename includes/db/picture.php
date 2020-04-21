@@ -27,6 +27,15 @@ function removePictureByThemeId($pdo, $themeId)
     );
 }
 
+function removePictureByUserId($pdo, $userId)
+{
+    executeUpdate($pdo, 
+        "DELETE FROM Picture WHERE themeId IN (SELECT id FROM Theme WHERE userId = ?)", array(
+            $userId
+        )
+    );
+}
+
 function getPictureById($pdo, $id)
 {
     $res = executeQuery($pdo, 
@@ -64,6 +73,18 @@ function getPicturesByThemeId($pdo, $themeId, $limit=100)
     return $pictures;
 }
 
+function getPicturesByUserId($pdo, $userId, $limit=100)
+{
+    $res = executeQuery($pdo, 
+        "SELECT P.* FROM Picture P INNER JOIN Theme T ON P.themeId = T.id WHERE T.userId = ? LIMIT $limit", array(
+            $userId
+        )
+    );
+    $pictures = $res->fetchAll();
+    $res->closeCursor();
+    return $pictures;
+}
+
 function getPopularPictures($pdo, $limit=100) {
     $res = executeQuery($pdo, 
         "SELECT * FROM Picture P LIMIT $limit"
@@ -79,6 +100,23 @@ function getPictureFilesByThemeId($pdo, $themeId)
     $res = executeQuery($pdo, 
         "SELECT P.file FROM Picture P WHERE P.themeId = ?", array(
             $themeId
+        )
+    );
+
+    while ($row = $res->fetch()) {
+        array_push($files, $row['file']);
+    }
+
+    $res->closeCursor();
+    return $files;
+}
+
+function getPictureFilesByUserId($pdo, $userId)
+{
+    $files = array();
+    $res = executeQuery($pdo, 
+        "SELECT P.file FROM Picture P INNER JOIN Theme T ON P.themeId = T.id WHERE T.userId = ?", array(
+            $userId
         )
     );
 

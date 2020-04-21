@@ -5,6 +5,7 @@
 
 .hider {
     position:fixed;
+    z-index: 100;
     padding:0;
     margin:0;
 

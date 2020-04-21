@@ -30,6 +30,24 @@ function register($email, $hashPwd, $pseudo, $pdo)
 	);
 }
 
+function removeUser($pdo, $id)
+{
+    executeUpdate($pdo, 
+        "DELETE FROM User WHERE id = ?", array(
+            $id
+        )
+    );
+}
+
+function changeUserPseudo($pdo, $id, $pseudo)
+{
+    executeUpdate($pdo, 
+        "UPDATE User SET pseudo = ? WHERE id = ?", array(
+            $pseudo, $id
+        )
+    );
+}
+
 /**
  * Vérifie si l'utilisateur existe avec le mot de passe spécifié et renvoit son pseudo si il existe, null sinon
  * @param PDO $pdo

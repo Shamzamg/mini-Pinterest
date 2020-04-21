@@ -21,7 +21,13 @@
 			</ul>
 			<form class="mx-2 my-auto d-inline w-100">
 				<div class="input-group">
-					<input type="text" class="form-control border border-right-0" placeholder="Search...">
+					<input type="text" class="form-control border border-right-0" placeholder="Search..." 
+						<?php 
+						if(isset($PICTURES_THEME_NAME)) {
+							echo 'value='.$PICTURES_THEME_NAME;
+						}
+						?>
+					>
 					<span class="input-group-append">
 						<button class="btn btn-outline-secondary border border-left-0" type="button">
 							<i class="fa fa-search"></i>

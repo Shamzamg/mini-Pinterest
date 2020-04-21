@@ -10,20 +10,18 @@ if (!$USER_LOGGED) {
     exit();
 }
 
-if(isset($_GET["user"])) {
-    $PROFILE_USER_ID = $_GET["user"];
-} else if(isset($_POST["user"])) {
+if(isset($_POST["user"])) {
     $PROFILE_USER_ID = $_POST["user"];
+} else if(isset($_GET["user"])) {
+    $PROFILE_USER_ID = $_GET["user"];
 } else {
     $PROFILE_USER_ID = $USER_ID;
 }
 
-if(isset($_POST["remove"])) {
-    $PROFILE_THEME_ID = $_POST["remove"];
+if(isset($_POST["theme"])) {
+    $PROFILE_THEME_ID = $_POST["theme"];
 } else if(isset($_GET["theme"])) {
     $PROFILE_THEME_ID = $_GET["theme"];
-} else if(isset($_POST["theme"])) {
-    $PROFILE_THEME_ID = $_POST["theme"];
 } else {
     $PROFILE_THEME_ID = null;
 }
@@ -36,7 +34,6 @@ if(isset($PROFILE_THEME_ID)) {
         $PROFILE_THEME_ID = null;
     }
 }
-closeConnexion($pdo);
 
 if(!$user) {
     closeConnexion($pdo);
@@ -44,21 +41,57 @@ if(!$user) {
     exit();
 }
 
-if(isset($_POST["remove"]) && isset($theme) && $userCanModify($PROFILE_USER_ID)) {
-    $pdo = getConnection();
+$totalPosts = totalUserPicturesFromId($pdo, $PROFILE_USER_ID);
 
+if(isset($_POST["remove"]) && isset($theme) && $userCanModify($PROFILE_USER_ID)) {
     $files = getPictureFilesByThemeId($pdo, $theme["id"]);
     foreach($files as $f) {
-        unlink($f);
+        unlink(__DIR__."/".$f);
     }
     removePictureByThemeId($pdo, $theme["id"]);
     removeTheme($pdo, $theme["id"]);
     
     closeConnexion($pdo);
-
     header('Location: profile.php?user='.$PROFILE_USER_ID);
     exit();
 }
+
+if(isset($_POST["edit-theme"]) && isset($theme) && $userCanModify($PROFILE_USER_ID)) {
+    $newName = $_POST["name"];
+    if(checkThemeAvailability($pdo, $newName, $PROFILE_USER_ID)) {
+        changeThemeName($pdo, $theme["id"], $newName);
+
+        closeConnexion($pdo);
+        header('Location: '.$_SERVER['REQUEST_URI']);
+        exit();
+    }
+}
+
+if(isset($_POST["set-pseudo"]) && $userCanModify($PROFILE_USER_ID)) {
+    $newPseudo = $_POST["pseudo"];
+    changeUserPseudo($pdo, $PROFILE_USER_ID, $newPseudo);
+
+    closeConnexion($pdo);
+    header('Location: '.$_SERVER['REQUEST_URI']);
+    exit();
+}
+
+if(isset($_POST["remove-user"]) && $userCanModify($PROFILE_USER_ID)) {
+    $files = getPictureFilesByUserId($pdo, $PROFILE_USER_ID);
+    foreach($files as $f) {
+        unlink(__DIR__."/".$f);
+    }
+    removePictureByUserId($pdo, $PROFILE_USER_ID);
+    removeThemeByUserId($pdo, $PROFILE_USER_ID);
+    removeUser($pdo, $PROFILE_USER_ID);
+    
+    closeConnexion($pdo);
+    unset($_SESSION["user"]);
+    header('Location: index.php');
+    exit();
+}
+
+closeConnexion($pdo);
 
 $THEME_USER_ID = $PROFILE_USER_ID;
 $PICTURES_USER_ID = $PROFILE_USER_ID;
@@ -76,69 +109,28 @@ $PICTURES_THEME_ID = $PROFILE_THEME_ID;
 <body>
     <?php include("includes/navigation.php"); ?>
 
-    <div class="card container">
-        <div class="text-center">
-        <h1><?= $user["pseudo"] ?></h1>
-
-        <?php 
-        if(isset($PROFILE_USER_ID)){
-            $pdo = getConnection();
-            echo '(Total posts: <gray>'.totalUserPicturesFromId($pdo, $PROFILE_USER_ID).'</gray>)';
-            closeConnexion($pdo);
-        }
-
-        if(isset($PROFILE_THEME_ID)) {
-            echo '<h2>'.$theme["name"].'</h2>';
-            if($userCanModify($PROFILE_USER_ID)) {
-                echo '
-                <form method="post" id="removeForm">
-                    <input type="hidden" name="remove" value="'.$PROFILE_THEME_ID.'">
-                    <input type="button" name="btn" value="Remove Theme" id="removeBtn" data-toggle="modal" data-target="#confirm-remove" class="btn btn-danger" />
-                </form>
-                ';
+    <div class="mainContainer">
+        <div class="card profile-container">
+            <?php 
+            if(isset($PROFILE_THEME_ID)) {
+                include("includes/profile/theme.php");
+            } else {
+                include("includes/profile/index.php");
             }
-        }
-        ?>
-        </div> <!-- Ferme le div qui aligne le texte-->
-        <?php include("includes/picture-grid.php");
-         if(!$userCanModify($PROFILE_USER_ID)) {
+            ?>
+        </div>
+
+        <?php
+        if(isset($PROFILE_THEME_ID) || isset($_POST['pictures'])) {
+            include("includes/picture-grid.php");
+        } else {
             include("includes/themes-grid.php");
         }
         ?>
     </div>
 
-    <div class="modal fade" id="confirm-remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class=" font-weight-bold modal-header">
-                    Confirm Remove
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to remove this theme ?
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="#" id="removeConfirm" class="btn btn-danger success">Remove Theme</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <?php include("includes/footer.php"); ?>
 
 </body>
-
-<script>
-    $('#removeBtn').click(function() {
-     /* when the button in the form, display the entered values in the modal */
-     $('#lname').text($('#lastname').val());
-     $('#fname').text($('#firstname').val());
-    });
-
-    $('#removeConfirm').click(function(){
-        $('#removeForm').submit();
-    });
-</script>
 
 </html>

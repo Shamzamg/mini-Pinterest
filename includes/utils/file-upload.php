@@ -192,6 +192,7 @@ function mime2ext($mime) {
         'application/smil'                                                          => 'smil',
         'text/srt'                                                                  => 'srt',
         'image/svg+xml'                                                             => 'svg',
+        'image/svg'                                                                 => 'svg',
         'application/x-shockwave-flash'                                             => 'swf',
         'application/x-tar'                                                         => 'tar',
         'application/x-gzip-compressed'                                             => 'tgz',
