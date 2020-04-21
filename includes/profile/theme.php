@@ -24,7 +24,7 @@
         <div class="pull-right">
             <a class="user-mini" href="profile.php?user=<?= $user["id"] ?>">
                 <h5><?= $user["pseudo"] ?></h5>
-                <img src="assets/img/user.svg"></img>
+                <img class="user-image" src="<?= $user['image'] ? $user['image'] : 'assets/img/user.svg' ?>"></img>
             </a>
         </div>
     </div>
