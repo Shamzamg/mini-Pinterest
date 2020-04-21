@@ -26,7 +26,7 @@
                 <?php 
                 if($userCanModify($PROFILE_USER_ID)) {
                     echo '
-                    <form method="post" id="set-image-form" name="set-image" enctype="multipart/form-data">
+                    <form class="hidden" method="post" id="set-image-form" name="set-image" enctype="multipart/form-data">
                         <input type="hidden" name="user" value="'.$user["id"].'">
                         <input type="hidden" name="set-image" value="">
                         <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_IMAGE_SIZE ?>" />
