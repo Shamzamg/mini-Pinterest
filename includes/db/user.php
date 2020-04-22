@@ -57,6 +57,15 @@ function changeUserImage($pdo, $id, $image)
     );
 }
 
+function changeUserPassword($pdo, $id, $hashPwd)
+{
+    executeUpdate($pdo, 
+        "UPDATE User SET pwd = ? WHERE id = ?", array(
+            $hashPwd, $id
+        )
+    );
+}
+
 /**
  * Vérifie si l'utilisateur existe avec le mot de passe spécifié et renvoit son pseudo si il existe, null sinon
  * @param PDO $pdo

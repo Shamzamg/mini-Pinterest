@@ -44,8 +44,8 @@
                         <input type="text" name="name" id="themeName" class="form-control" placeholder="Name" value="<?= $theme["name"] ?>" required autofocus>
                         <label for="themeName">Name</label>
                     </div>
-                    <?php if (!empty($error)) {
-                        echo "<div style='font-weight:bold;color:red;margin:4px;'>$error</div>";
+                    <?php if (!empty($editThemeErr)) {
+                        echo "<div style='font-weight:bold;color:red;margin:4px;'>$editThemeErr</div>";
                     } ?>
                 </div>
 
@@ -78,3 +78,9 @@
         </form>
     </div>
 </div>
+
+<script>
+    if(<?= boolstr(!empty($editThemeErr)) ?>) {
+        $("#edit-theme").modal("show");
+    }
+</script>

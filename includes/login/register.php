@@ -44,7 +44,8 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Register</h5>
-                    <form class="form-signin" method="post">
+                    <form class="form-signin" method="post"
+                            oninput="/*confirm.setCustomValidity(confirm.value != password.value ? 'Passwords do not match.' : '')*/">
                         <input type="hidden" name="login" value="register"/>
                         <div class="form-label-group">
                             <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -61,6 +62,10 @@
                             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                             <label for="inputPassword">Password</label>
                         </div>
+                        <!--<div class="form-label-group">
+                            <input type="password" name="confirm" id="inputPasswordConfirm" class="form-control" placeholder="Password Confirm" required>
+                            <label for="inputPasswordConfirm">Password Confirm</label>
+                        </div>-->
 
                         <div class="form-label-group">
                             <input type="text" name="pseudo" id="inputPseudo" class="form-control" placeholder="Pseudo">

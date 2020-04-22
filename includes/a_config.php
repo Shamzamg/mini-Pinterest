@@ -43,4 +43,8 @@
 	{
 		return $userId == $USER_ID || $USER_IS_MODERATOR;
 	};
+
+	function boolstr($b) {
+		return boolval($b) ? 'true' : 'false';
+	}
 ?>

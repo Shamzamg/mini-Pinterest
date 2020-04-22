@@ -58,7 +58,7 @@ if(isset($_POST["remove"]) && isset($theme) && $userCanModify($PROFILE_USER_ID))
     exit();
 }
 
-if(isset($_POST["edit-theme"]) && isset($theme) && $userCanModify($PROFILE_USER_ID)) {
+if(isset($_POST["edit-theme"]) && isset($theme) && $userCanModify($PROFILE_USER_ID) && isset($_POST["name"])) {
     $newName = $_POST["name"];
     if(checkThemeAvailability($pdo, $newName, $PROFILE_USER_ID)) {
         changeThemeName($pdo, $theme["id"], $newName);
@@ -66,6 +66,8 @@ if(isset($_POST["edit-theme"]) && isset($theme) && $userCanModify($PROFILE_USER_
         closeConnexion($pdo);
         header('Location: '.$_SERVER['REQUEST_URI']);
         exit();
+    } else {
+        $editThemeErr = "Theme already exist";
     }
 }
 
@@ -76,6 +78,21 @@ if(isset($_POST["set-pseudo"]) && $userCanModify($PROFILE_USER_ID)) {
     closeConnexion($pdo);
     header('Location: '.$_SERVER['REQUEST_URI']);
     exit();
+}
+
+if(isset($_POST["set-password"]) && $PROFILE_USER_ID == $USER_ID && isset($_POST["current"]) && isset($_POST["password"])) {
+    $currentPassword = md5($_POST["current"]);
+    $newPassword = md5($_POST["password"]);
+
+    if($user["pwd"] == $currentPassword) {
+        changeUserPassword($pdo, $PROFILE_USER_ID, $newPassword);
+
+        closeConnexion($pdo);
+        header('Location: '.$_SERVER['REQUEST_URI']);
+        exit();
+    } else {
+        $setPasswordErr = "Wrong password";
+    }
 }
 
 if(isset($_POST["set-image"]) && $userCanModify($PROFILE_USER_ID) && 
