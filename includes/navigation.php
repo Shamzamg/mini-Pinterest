@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="styles/navigation.css">
 <div class="container-fullwidth navidation">
 	<nav class="navbar navbar-expand-lg navbar-light">
 		<a class="navbar-brand" href="index.php">
@@ -53,12 +52,7 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="profile.php">
-						<?php if($USER_IMAGE == NULL){
-							echo '<i class="fa fa-user-circle fa-lg"></i>';
-						}
-						else{
-							echo '<img class="user-nav-image" src="'.$USER_IMAGE.'"></img>';
-						} ?>
+						<img class="user-nav-image" src="<?= $USER_IMAGE ? $USER_IMAGE : 'assets/img/user.svg' ?>"></img>
 					</a>
 				</li>
 				<li class="nav-item dropdown">
