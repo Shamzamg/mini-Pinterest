@@ -13,6 +13,7 @@
 		$USER_NAME = $_SESSION["user"]["pseudo"];
 		$USER_ID = $_SESSION["user"]["id"];
 		$USER_RIGHTS = $_SESSION["user"]["rights"];
+		$USER_IMAGE = $_SESSION["user"]["image"];
 		$USER_LOGGED = true;
 	}
 

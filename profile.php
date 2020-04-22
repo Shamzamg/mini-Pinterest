@@ -95,6 +95,7 @@ if(isset($_POST["set-image"]) && $userCanModify($PROFILE_USER_ID) &&
 
             if($uploaded) {
                 changeUserImage($pdo, $PROFILE_USER_ID, $path);
+                $_SESSION["user"]["image"] = $path;
             }
         }
     }
