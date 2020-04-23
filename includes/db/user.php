@@ -19,7 +19,11 @@ function checkUserAvailability($email, $pdo)
 }
 
 /**
- * Enregistre un nouvel utilisateur dans la relation user
+ * Enregistre un nouvel utilisateur dans la table User
+ * @param string $email email du nouvel utilisateur, comprenant nécessairement un @
+ * @param string $hashPwd mot de passe du nouvel utilisateur, encrypté
+ * @param string $pseudo pseudonyme du nouvel utilisateur
+ * @param PDO $pdo
  */
 function register($email, $hashPwd, $pseudo, $pdo)
 {
@@ -30,6 +34,11 @@ function register($email, $hashPwd, $pseudo, $pdo)
 	);
 }
 
+/**
+ * Supprime l'utilisateur de la base de données spécifié par son identifiant
+ * @param PDO $pdo
+ * @param int $id identifiant de l'utilisateur
+ */
 function removeUser($pdo, $id)
 {
     executeUpdate($pdo, 
@@ -39,6 +48,11 @@ function removeUser($pdo, $id)
     );
 }
 
+/**
+ * Supprime l'utilisateur de la base de données spécifié par son identifiant
+ * @param PDO $pdo
+ * @param int $id identifiant de l'utilisateur
+ */
 function changeUserPseudo($pdo, $id, $pseudo)
 {
     executeUpdate($pdo, 
@@ -48,6 +62,12 @@ function changeUserPseudo($pdo, $id, $pseudo)
     );
 }
 
+/**
+ * Change l'image de profil de l'utilisateur
+ * @param PDO $pdo
+ * @param int $id identifiant de l'utilisateur
+ * @param string $image chemin vers la nouvelle image
+ */
 function changeUserImage($pdo, $id, $image)
 {
     executeUpdate($pdo, 
@@ -57,17 +77,10 @@ function changeUserImage($pdo, $id, $image)
     );
 }
 
-function changeUserPassword($pdo, $id, $hashPwd)
-{
-    executeUpdate($pdo, 
-        "UPDATE User SET pwd = ? WHERE id = ?", array(
-            $hashPwd, $id
-        )
-    );
-}
-
 /**
- * Vérifie si l'utilisateur existe avec le mot de passe spécifié et renvoit son pseudo si il existe, null sinon
+ * Vérifie si l'utilisateur existe avec le mail spécifié et un mot de passe et renvoie ses informations s'il existe, null sinon
+ * @param string $email email de l'utilisateur, comprenant nécessairement un @
+ * @param string $hashPwd mot de passe encrypté de l'utilisateur
  * @param PDO $pdo
  */
 function getUser($email, $hashPwd, $pdo)
@@ -82,6 +95,11 @@ function getUser($email, $hashPwd, $pdo)
 	return $user;
 }
 
+/**
+ * Vérifie si l'utilisateur existe avec un identifiant et renvoie ses informations s'il existe, null sinon
+ * @param PDO $pdo
+ * @param int $id identifiant de l'utilisateur
+ */
 function getUserById($pdo, $id)
 {
 	$res = executeQuery($pdo, 
@@ -107,7 +125,7 @@ function getUserCount($pdo)
 }
 
 /**
- * Renvoie le nombre de photos postées
+ * Renvoie le nombre de photos postées sur la base
  * @param PDO $pdo
  */
 function getPicturesCount($pdo)
@@ -118,6 +136,11 @@ function getPicturesCount($pdo)
 	return $nb["count(*)"];
 }
 
+/**
+ * Renvoie le nombre total de photos postées par l'utilisateur par identifiant
+ * @param PDO $pdo
+ * @param int $userId identifiant de l'utilisateur
+ */
 function totalUserPicturesFromId($pdo, $userId){
 	$res = executeQuery($pdo, "SELECT count(*) FROM User U JOIN Theme T ON U.id=T.userId JOIN Picture P ON T.id=P.themeId WHERE U.id='$userId'");
 	$nb = $res->fetch();

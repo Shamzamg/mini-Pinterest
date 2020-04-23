@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Vérifie si un nom de thème est disponible pour l'utilisateur spécifié et renvoie un booléen
+ * @param PDO $pdo
+ * @param string $theme nom du thème
+ * @param int $userId identifiant de l'utilisateur
+ */
 function checkThemeAvailability($pdo, $theme, $userId)
 {
     $res = executeQuery($pdo, 
@@ -13,6 +19,12 @@ function checkThemeAvailability($pdo, $theme, $userId)
 	return $available;
 }
 
+/**
+ * Ajoute un thème à l'utilisateur spécifié
+ * @param PDO $pdo
+ * @param string $name nom du thème
+ * @param int $userId identifiant de l'utilisateur
+ */
 function addTheme($pdo, $name, $userId)
 {
     executeUpdate($pdo, 
@@ -22,6 +34,12 @@ function addTheme($pdo, $name, $userId)
     );
 }
 
+/**
+ * Change le nom du thème par identifiant
+ * @param PDO $pdo
+ * @param int $id identifiant du thème
+ * @param string $name nom du thème
+ */
 function changeThemeName($pdo, $id, $name)
 {
     executeUpdate($pdo, 
@@ -31,6 +49,11 @@ function changeThemeName($pdo, $id, $name)
     );
 }
 
+/**
+ * Supprime un thème par identifiant
+ * @param PDO $pdo
+ * @param int $id identifiant du thème
+ */
 function removeTheme($pdo, $id)
 {
     executeUpdate($pdo, 
@@ -40,6 +63,11 @@ function removeTheme($pdo, $id)
     );
 }
 
+/**
+ * Supprime un thème par identifiant de l'utilisateur
+ * @param PDO $pdo
+ * @param int $id identifiant de l'utilisateur
+ */
 function removeThemeByUserId($pdo, $userId)
 {
     executeUpdate($pdo, 
@@ -49,6 +77,11 @@ function removeThemeByUserId($pdo, $userId)
     );
 }
 
+/**
+ * Renvoie un nom de thème par identifiant
+ * @param PDO $pdo
+ * @param int $id identifiant du thème
+ */
 function getThemeById($pdo, $id)
 {
     $res = executeQuery($pdo, 
@@ -62,7 +95,9 @@ function getThemeById($pdo, $id)
 }
 
 /**
- * Retourne les thèmes triés par popularité
+ * Renvoie un tableau des noms des thèmes les plus populaires. Le tableau renvoyé a une taille maximale égale à 100.
+ * @param PDO $pdo
+ * @param int $limit=100 limite d'images retournées
  */
 function getPopularThemes($pdo, $limit=100)
 {
@@ -80,6 +115,12 @@ function getPopularThemes($pdo, $limit=100)
     return $themes;
 }
 
+/**
+ * Renvoie un tableau des 100 noms des thèmes créés par l'utilisateur spécifié par son identifiant. Le tableau renvoyé a une taille maximale égale à 100.
+ * @param PDO $pdo
+ * @param int $userId identifiant de l'utilisateur
+ * @param int $limit=100 limite d'images retournées
+ */
 function getUserThemes($pdo, $userId, $limit=100)
 {
     $res = executeQuery($pdo, 
@@ -93,6 +134,12 @@ function getUserThemes($pdo, $userId, $limit=100)
     return $themes;
 }
 
+/**
+ * Renvoie un tableau des informations concernant le theme recherché par son nom et l'id de l'utilisateur qui l'a créé
+ * @param PDO $pdo
+ * @param int $userId identifiant de l'utilisateur
+ * @param string $themeName nom du thème recherché
+ */
 function findUserThemeByName($pdo, $userId, $themeName)
 {
     $res = executeQuery($pdo, 
