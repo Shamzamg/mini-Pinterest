@@ -78,6 +78,21 @@ function changeUserImage($pdo, $id, $image)
 }
 
 /**
+ * Change le mot de passe de l'utilisateur
+ * @param PDO $pdo
+ * @param int $id identifiant de l'utilisateur
+ * @param string $hashPwd nouveau mot de passe encrypté
+ */
+function changeUserPassword($pdo, $id, $hashPwd)
+{
+    executeUpdate($pdo, 
+        "UPDATE User SET pwd = ? WHERE id = ?", array(
+            $hashPwd, $id
+        )
+    );
+}
+
+/**
  * Vérifie si l'utilisateur existe avec le mail spécifié et un mot de passe et renvoie ses informations s'il existe, null sinon
  * @param string $email email de l'utilisateur, comprenant nécessairement un @
  * @param string $hashPwd mot de passe encrypté de l'utilisateur
