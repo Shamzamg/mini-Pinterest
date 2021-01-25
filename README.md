@@ -24,7 +24,5 @@ Pour se faire il suffit d'executer le fichier db.sql
 
 #### Acces au site
 
-Depuis votre navigateur https://bdw1.univ-lyon1.fr/p1808309/ permet d'accéder au site.
-Le nom d'utilisateur est: p1808309
-Le mot de passe requis est: 522672
+Depuis votre navigateur http://picsharegz.myartsonline.com/ permet d'accéder au site.
 
